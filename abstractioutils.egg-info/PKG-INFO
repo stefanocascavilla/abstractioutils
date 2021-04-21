@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: abstractioutils
+Version: 1.0.0
+Summary: Common packages used in Abstractio
+Home-page: https://github.com/stefanocascavilla/abstractioutils
+Author: Stefano Cascavilla
+Author-email: cascavilla1@gmail.com
+License: MIT
+Description: # abstractioutils
+        Common packages used in Abstractio
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown

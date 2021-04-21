@@ -89,3 +89,21 @@ class DynamoDB(Base):
         except Exception as exc:
             print(f"{datetime.now()} - Error while updating a DynamoDB item - {exc}")
             raise DynamoDBException(status_code=500, message=exc.__str__())
+
+    def delete_attribute(
+        self,
+        table_name: str,
+        key: dict,
+        expression_attribute_names: dict,
+        update_expression: str
+    ) -> dict:
+        try:
+            return self._get_client().update_item(
+                TableName=table_name,
+                Key=key,
+                ExpressionAttributeNames=expression_attribute_names,
+                UpdateExpression=update_expression
+            )
+        except Exception as exc:
+            print(f"{datetime.now()} - Error while deleting attribute from a DynamoDB item - {exc}")
+            raise DynamoDBException(status_code=500, message=exc.__str__())
