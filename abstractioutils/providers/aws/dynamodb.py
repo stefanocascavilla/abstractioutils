@@ -30,7 +30,8 @@ class DynamoDB(Base):
         try:
             return self._get_client().delete_item(
                 TableName=table_name,
-                Key=key
+                Key=key,
+                ReturnValues='ALL_OLD'
             )
         except Exception as exc:
             print(f"{datetime.now()} - Error while deleting item from the DynamoDB table - {exc}")

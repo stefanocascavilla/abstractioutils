@@ -11,7 +11,7 @@ README = (HERE / "README.md").read_text()
 # noinspection PyInterpreter
 setup(
     name="abstractioutils",
-    version="1.0.2",
+    version="1.0.3",
     description="Common packages used in Abstractio",
     long_description=README,
     long_description_content_type="text/markdown",
