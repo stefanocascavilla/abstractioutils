@@ -22,6 +22,20 @@ class DynamoDB(Base):
             print(f"{datetime.now()} - Error while getting item from the DynamoDB table - {exc}")
             raise DynamoDBException(status_code=500, message=exc.__str__())
 
+    def delete_item(
+        self,
+        table_name: str,
+        key: dict
+    ) -> dict:
+        try:
+            return self._get_client().delete_item(
+                TableName=table_name,
+                Key=key
+            )
+        except Exception as exc:
+            print(f"{datetime.now()} - Error while deleting item from the DynamoDB table - {exc}")
+            raise DynamoDBException(status_code=500, message=exc.__str__())
+
     def scan(
         self,
         table_name: str,
