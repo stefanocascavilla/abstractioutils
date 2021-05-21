@@ -96,3 +96,23 @@ class CloudRun(Base):
         except Exception as exc:
             print(f"{datetime.now()} - Error while allowing unauth calls - {exc.__str__()}")
             raise CloudRunException(status_code=500, message='Error while allowing unauth calls')
+
+    def unallow_unauthenticated_invokations(self, service_name: str) -> dict:
+        print(f"{datetime.now()} - Unallowing unauth calls for the {service_name} service...")
+
+        service = build('run', 'v1', credentials=self._get_credentials(), cache_discovery=False)
+        try:
+            return service.projects().locations().services().setIamPolicy(
+                resource=service_name,
+                body={
+                    "policy": {
+                        "bindings": [{
+                            "role": 'roles/run.invoker',
+                            "members": ['allAuthenticatedUsers']
+                        }]
+                    }
+                }
+            ).execute()
+        except Exception as exc:
+            print(f"{datetime.now()} - Error while unallowing unauth calls - {exc.__str__()}")
+            raise CloudRunException(status_code=500, message='Error while unallowing unauth calls')
